@@ -85,11 +85,7 @@ class _CurrentWeatherPageState  extends State<CurrentWeatherPage> {
   }
   @override
   Widget build(BuildContext context) {
-    // for(int i=0;i<list.length;i++){
-    //   cityName?.add(list[i].getCity());
-    // }
-    // var downvalue=list[0].city;
-    // _weather=postRequest() as Weather?;
+
     return  Scaffold(
       body:
       ListView(
@@ -162,14 +158,7 @@ class _CurrentWeatherPageState  extends State<CurrentWeatherPage> {
             ],
           ),
           Padding(padding:EdgeInsets.all(30)),
-          // if(_weather!=null)Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //   children: [Icon(Icons.thermostat,size: 50,color: Colors.white,),if (_weather != null)Text("${_weather!.temp}°C",style: TextStyle(fontSize:50,color: Colors.white ),),SizedBox(height: 30,),Text("推薦穿著\n:${_weather!.recommed}")],
-          // ),
-          // SizedBox(height: 20,),
-          // Container(
-          //     padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 16.0),
-          //     child: Text("Today", style: TextStyle(fontWeight: FontWeight.bold,fontSize:25,color: Colors.white),)
+
           // ),
           if(_weather!=null)Container(
               margin: const EdgeInsets.all(12),
@@ -225,11 +214,6 @@ class _CurrentWeatherPageState  extends State<CurrentWeatherPage> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    // Container(
-                                    //   height: 1,
-                                    //   width: 300,
-                                    //   color: Colors.white,
-                                    // ),
                                     Container(
                                         padding: const EdgeInsets.all(10),
                                         child: Row(
@@ -253,18 +237,7 @@ class _CurrentWeatherPageState  extends State<CurrentWeatherPage> {
           ),
 
               Row(children :[
-                // DropdownButton(value:downvalue,icon: const Icon(Icons.keyboard_arrow_down),items:cityName, onChanged:(String? value){
-                //   setState(() {
-                //       downvalue=value;
-                //   });
-                // }
-                // ),
-                // DropdownButton(value:downvalue,icon: const Icon(Icons.keyboard_arrow_down),items:cityName, onChanged:(String? value){
-                //   setState(() {
-                //     downvalue=value;
-                //   });
-                // }
-                // ),
+
               Container(
               margin: const EdgeInsets.only(top: 200),
               height: 200,
@@ -280,13 +253,6 @@ class _CurrentWeatherPageState  extends State<CurrentWeatherPage> {
           ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () async {
-      //     await _getCurrentLocation();
-      //   },
-      //   backgroundColor: Colors.blue,
-      //   child: const Icon(Icons.add),
-      // ),
     );
   }
 
@@ -296,19 +262,13 @@ class _CurrentWeatherPageState  extends State<CurrentWeatherPage> {
   Future postRequest() async {
 
     Weather? weather;
-    var url = Uri.parse("http://192.168.63.248:3000");
+    var url = Uri.parse("http://192.168.0.226:3000");
     if(_currentPosition!.latitude!=null || _currentPosition!.longitude!=null){
       data = {
         "lat": "${_currentPosition!.latitude}",
         "log": "${_currentPosition!.longitude}"
       };
     }
-      // else{
-    //   data = {
-    //     "city":city,
-    //     "area":area
-    //   };
-    // }
     var body = jsonEncode(data);
     http.Response response = await http.post(url, body: body);
     if (response.statusCode == 200) {
